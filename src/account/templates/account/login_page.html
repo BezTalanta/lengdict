@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "account/account.css" %}">
+{% endblock style %}
+
+{% block content %}
+    {% if request.user.is_anonymous %}
+        <div class="account-menu">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username"> <br>
+                <input type="password" name="password" placeholder="Password"> <br>
+                <button type="submit" class="btn btn-primary" style="position: absolute; bottom: 10px; left: 40%;">
+                    Login
+                </button>
+            </form>
+        </div>
+    {% else %}
+        You are already authenticated, {{ request.user.username }} <br>
+        <a href="{% url 'home' %}">Return</a>
+    {% endif %}
+{% endblock content %}

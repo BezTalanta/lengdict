@@ -1,0 +1,32 @@
+.manual-add {
+    position: absolute;
+    top: 70px;
+    right: 450px;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 480px;
+    height: 815px;
+    padding: 10px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.manual-add h4 {
+    text-align: center;
+}
+
+.auto-add {
+    position: absolute;
+    top: 70px;
+    left: 400px;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 480px;
+    height: 815px;
+    padding: 10px;
+}
+
+.auto-add h4 {
+    text-align: center;
+}

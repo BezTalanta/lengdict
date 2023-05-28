@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Lengdict - run menu</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "run/run.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="run-menu">
+
+    <h3>
+        Settings
+    </h3>
+
+    {% if err %}
+        {{ err }}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="item">
+            <h4>
+                Show type:
+            </h4>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="show_type" value="w" id="radio1" checked>
+                <label class="form-check-label" for="radio1">
+                Only word
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="show_type" value="t" id="radio2">
+                <label class="form-check-label" for="radio2">
+                Only transcription
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="show_type" value="p" id="radio3">
+                <label class="form-check-label" for="radio3">
+                50/50
+                </label>
+            </div>
+        </div>
+
+        <div class="item">
+            <h4>
+                Other additional settings:
+            </h4>
+            <div class="form-switch">
+                <input class="form-check-input" type="checkbox" id="switch1" name="mm">
+                <label class="form-check-label" for="switch1">Affects the status</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="form-switch">
+                <input class="form-check-input" type="checkbox" id="switch2" name="sentences">
+                <label class="form-check-label" for="switch2">Show sentences</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <input name="amount" type="number" placeholder="How many words you want" min="1" max="{{ max }}">
+        </div>
+
+        <div class="item">
+            <select class="form-select" name="card">
+                <option value="d" selected>Select card if you want</option>
+                {% for card in cards %}
+                    <option value="{{ card.id }}">
+                        {{ card.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Confirm settings
+        </button>
+    </form>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,9 @@
+.message-menu {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 400px;
+    height: 140px;
+    padding: 10px;
+    overflow-y: auto;
+}

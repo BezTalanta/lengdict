@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load word_tags %}
+
+{% block title %}
+<title>Lengdict - select mode</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "word/word_page.css" %}">
+<script src="{% static "word/word_scripts.js" %}"></script>
+{% endblock style %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="select-mode">
+        {% for word in words %}
+            {% find_from_list selected_words_id word.pk as status %}
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="{{ word.pk }}"
+                {% if status %}
+                    checked
+                {% endif %}>
+                <label class="form-check-label" for="flexSwitchCheckDefault">
+                    {{ word.original_word|capfirst }} [{{ word.transcription }}] -
+                    {{ word.translation }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="bottom">
+        <input type="hidden" name="card_id" value="{{ card_id }}">
+        <button class="btn btn-primary" type="submit">
+        {% if card_id == -1 %}
+            Create new card
+        {% else %}
+            Update card
+        {% endif %}
+        </button>
+    </div>
+</form>
+{% endblock content %}

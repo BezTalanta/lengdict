@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load run_tags %}
+
+{% block title %}
+<title>Lengdict - running</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "run/run.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="word-bar">
+    <form method="post">
+        {% csrf_token %}
+
+        <h3 class="current-amount">
+            {{ current_id }}/{{ totally_amount }}
+        </h3>
+
+        <h1>
+        {% if show_type == 'w' %}
+            {{ word.original_word|capfirst }}
+        {% elif show_type == 't' %}
+            {{ word.transcription|capfirst }}
+        {% else %}
+            {% percent word as w %}
+            {{ w|capfirst }}
+        {% endif %}
+        </h1>
+
+        <input type="text" name="input" placeholder="Write there your answer" style="width: 100%;">
+
+        {% if sentences %}
+            {% if word.sentences %}
+                <textarea name="" id="" cols="30" rows="10" style="width: 100%;">
+                    {{ word.out_sentences }}
+                </textarea>
+            {% else %}
+                <h2>Sentences are empty</h2>
+            {% endif %}
+        {% endif %}
+
+        <button class="btn btn-primary" type="submit">
+            Try it
+        </button>
+    </form>
+</div>
+
+<a href="{% url 'run_result' %}" class="result-link">
+    Go at a result
+</a>
+{% endblock content %}

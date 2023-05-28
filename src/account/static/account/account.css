@@ -1,0 +1,16 @@
+.account-menu {
+    position: absolute;
+    top: 70px;
+    left: 35%;
+    width: 450px;
+    height: 400px;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 2%;
+}
+
+.account-menu input {
+    margin-top: 10px;
+    width: 100%;
+}

@@ -1,0 +1,5 @@
+{% for card in cards %}
+    <a href="{{ card.get_absolute_url }}">{{ card.title }}</a> |
+    {{ card.description }} |
+    {{ card.words.all.count }} <br>
+{% endfor %}

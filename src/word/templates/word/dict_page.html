@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load word_tags %}
+
+{% block title %}
+<title>
+    Lengdict - dictionary
+</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "word/word_page.css" %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="edit-menu">
+    <form action="{% url 'word_add' %}">
+        <button class="btn btn-primary">
+            Add a new word
+        </button>
+    </form>
+
+    <form method="post" style="margin-top: 5px;">
+        {% csrf_token %}
+        <button name="status_toggle" class="btn {% get_from_session 'status_color' %}">
+            Show status color
+        </button>
+    </form>
+
+    <form method="get">
+        <h5>Search field:</h5>
+        <input type="text" name="search" placeholder="Write text then press enter">
+    </form>
+
+    <div class="go-bottom">
+        <form action="{% url 'select' %}">
+            <button class="btn btn-primary">
+                Select mode
+            </button>
+        </form>
+        <h5>
+            Totally amount of words: {{ words.count }}
+        </h5>
+    </div>
+</div>
+
+<div class="status-menu">
+    <h3>
+    {% if good > bad %}
+        Good
+    {% else %}
+        Poor
+    {% endif %}
+    </h3>
+    <div class="good">
+        {{ good }} words with good status
+    </div>
+    <div class="bad">
+        {{ bad }} words with bad status
+    </div>
+    <div class="neutral">
+        {{ neutral }} words with neutral status<br>
+        {% if neutral > good|add:bad %}
+            <div style="position: absolute; bottom: 0px;">
+                Recommend to you - play more rating affective games, very low processed words
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="word-plate">
+{% for word in words %}
+    <form action="{{ word.get_absolute_url }}">
+        <button type="submit" class="word {% color_word word.pk %}">
+            {{ word.original_word|capfirst }}
+            [{{ word.transcription }}]
+            - {{ word.translation }}
+        </button>
+    </form>
+{% empty %}
+    You have no words or filters are bad
+{% endfor %}
+</div>
+
+{% endblock content %}

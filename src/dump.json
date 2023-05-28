@@ -1,0 +1,14 @@
+[
+    {
+        "model": "word.word",
+        "pk": 15,
+        "fields": {
+            "user": 1,
+            "original_word": "apple",
+            "transcription": "adssda",
+            "translation": "dsadsa",
+            "sentences": "",
+            "notes": ""
+        }
+    }
+]

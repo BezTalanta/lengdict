@@ -1,0 +1,23 @@
+{% load run_tags %}
+
+{{ card.title }} - {{ card.description }}
+<br>
+by {{ card.created_by }}
+<br>
+
+<form method="post">
+    <button type="submit">
+        Save/Update
+    </button>
+    <br>
+    {% for word in words %}
+        <input
+            type="checkbox"
+            name="{{ word.pk }}"
+            {% if word.pk in selected_indexes %}
+                checked
+            {% endif %}
+        >{{ word.original_word }}[{{ word.transcription }}] - {{ word.translation }}
+        <br>
+    {% endfor %}
+</form>

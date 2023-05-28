@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Lengdict - cards</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "card/card.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="cards-bar">
+    <div class="middle-button">
+        <form action="{% url 'create_card' %}" method="get">
+            <button class="btn btn-primary">
+                Create a new one card
+            </button>
+        </form>
+    </div>
+
+    <form method="get"
+        style="position: absolute; top: 10px; right: 80px;">
+        {% if l_cards.has_previous %}
+            <input type="hidden" name="l_page_num" value="{{ l_cards.previous_page_number }}">
+            <input type="image" src="{% static "images/left_arrow.png" %}" style="width: 30px; height: 30px;">
+        {% endif %}
+    </form>
+    <h3 style="position: absolute; top: 8px; right: 57px; text-align: center;">
+        {{ l_cards.number }}
+    </h3>
+    <form method="get"
+        style="position: absolute; top: 10px; right: 20px;">
+        {% if l_cards.has_next %}
+            <input type="hidden" name="l_page_num" value="{{ l_cards.next_page_number }}">
+            <input type="image" src="{% static "images/right_arrow.png" %}" style="width: 30px; height: 30px;">
+        {% endif %}
+    </form>
+
+    <h3>Your personal cards:</h3>
+    {% if l_cards %}
+        <div class="cards-storage">
+            {% for card in l_cards %}
+                <div class="card">
+                    <img src="{% static "images/not_found.png" %}"> <br>
+                    <h4>
+                        <a href="{{ card.get_absolute_url }}">
+                            {{ card.title|capfirst }}
+                        </a>
+                    </h4>
+                    <h5>
+                        {{ card.description }}
+                    </h5>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <h3>You have no personal cards, create new one</h3>
+    {% endif %}
+
+    <!-- <br>
+    <h3>Global cards:</h3> -->
+    {% if g_cards %}
+        {% for card in l_cards %}
+            <img src="{% static "images/not_found.png" %}" width="300" height="200"> <br>
+            <a href="{{ card.get_absolute_url }}">
+                {{ card.title }}
+            </a> <br> <br>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

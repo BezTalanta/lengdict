@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Lengdict - delete {{ word.original_word }}</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "word/detail_word.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="deletion-bar">
+    <h2>Delete confirmation</h2>
+    Word: {{ word.original_word }} <br>
+    Transcription: [{{ word.transcription }}] <br>
+    Translation: {{ word.translation }} <br> <br>
+
+    <div class="bottom">
+        Are you sure to delete this word?
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">
+                Confirm deletion
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

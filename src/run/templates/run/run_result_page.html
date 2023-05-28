@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load run_tags %}
+
+{% load static %}
+
+{% block title %}
+<title>
+    Lengdict - run result
+</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "run/run.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="result-bar">
+    {% for word in words %}
+        <div class="
+        {% get_status forloop.counter0 as word_status %}
+        {% if word_status == 'true' %}
+            one-word-good
+        {% elif word_status == 'false' %}
+            one-word-bad
+        {% else %}
+            one-word-not-shown
+        {% endif %}">
+            {% get_word word as w %}
+            {{ w.original_word|capfirst }} [{{ w.transcription }}]
+            {% if word_status != 'not_shown' %}
+                - {{ w.translation }}
+            {% endif %}
+            <br>
+            {% get_from_list inputs forloop.counter0 %}
+        </div>
+    {% endfor %}
+</div>
+
+<div class="result-bar-bottom">
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">
+            Start a new training
+        </button>
+    </form>
+    <a href="{% url 'run' %}">Continue this training</a>
+</div>
+{% endblock content %}

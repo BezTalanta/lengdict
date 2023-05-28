@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Lengdict - create card</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "card/card.css" %}">
+{% endblock style %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="card-bar">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary bottom">
+            Create
+        </button>
+    </div>
+</form>
+{% endblock content %}

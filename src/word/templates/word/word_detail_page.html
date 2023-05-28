@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Lengdict - word detail</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "word/detail_word.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="detail-bar">
+    <div class="status-bar">
+        {{ form.instance.ans_status }}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary change-btn" name="button" value="change">Change</button>
+        <button class="btn btn-danger delete-btn" name="button" value="delete">Delete</button>
+    </form>
+</div>
+{% endblock content %}

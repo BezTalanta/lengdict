@@ -1,0 +1,62 @@
+.card-bar {
+    position: absolute;
+    left: 35%;
+    top: 70px;
+    height: fit-content;
+    min-height: 300px;
+    overflow-y: auto;
+    width: fit-content;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: left;
+}
+
+.card-bar .bottom {
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+}
+
+.cards-bar {
+    position: absolute;
+    left: 8%;
+    top: 70px;
+    width: 1555px;
+    height: 800px;
+    overflow-y: auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+.cards-bar .card {
+    width: 300px;
+    height: 400px;
+    float: left;
+    margin-left: 5px;
+    overflow-y: auto;
+}
+
+.cards-bar .card img {
+    width: 100%;
+    height: 200px;
+}
+
+.cards-bar .card a {
+    text-decoration: none;
+    color: gray;
+}
+
+.cards-bar h3 {
+    text-align: left;
+}
+
+.cards-bar .middle-button {
+    position: absolute;
+    left: 45%;
+    top: 10px;
+    width: 200px;
+    height: 100px;
+}

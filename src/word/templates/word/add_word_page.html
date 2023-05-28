@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>
+    Lengdict - add new word
+</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "word/add_word.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="manual-add">
+    <h4>
+        Manual creation:
+    </h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- {% for error in form.original_word.errors %}
+            {{ error }} <br>
+        {% endfor %}
+        {{ form.original_word.label }}:
+        {{ form.original_word }} -->
+        <button class="btn btn-primary">
+            Create
+        </button>
+    </form>
+</div>
+
+<div class="auto-add">
+    <h4>
+        Auto creation:
+    </h4>
+</div>
+{% endblock content %}

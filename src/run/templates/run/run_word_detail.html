@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>
+    Lengdict - word result
+</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "run/run.css" %}">
+{% endblock style %}
+
+{% block content %}
+<div class="detail-bar">
+    {% if status %}
+        <h2 class="good">
+            Right
+        </h2>
+    {% else %}
+        <h2 class="bad">
+            Wrong
+        </h2>
+    {% endif %}
+
+    Word was: {{ word.original_word}}[{{ word.transcription }}] <br>
+    Current status: {{ word.ans_status }} <br>
+    <br>
+
+    Original calculations: <br>
+    {% for k, v in orig_d.items %}
+        {% if v == 0 %}
+            <div class="one-word-bad">{{ k }}</div>
+        {% else %}
+            <div class="one-word-good">{{ k }}</div>
+        {% endif %}
+    {% endfor %}
+
+    Your input calculations: <br>
+    {% for k, v in inp_d.items %}
+        {% if v == 0 %}
+            <div class="one-word-bad">{{ k }}</div>
+        {% else %}
+            <div class="one-word-good">{{ k }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form method="get" style="position: absolute; bottom: 10px; left: 40%;">
+        <button class="btn btn-primary" type="submit">
+            Next word
+        </button>
+    </form>
+</div>
+{% endblock content %}

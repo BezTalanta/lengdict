@@ -1,0 +1,103 @@
+.status-menu {
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    top: 70px;
+    right: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.status-menu h3 {
+    text-align: center;
+}
+
+.status-menu .good {
+    color: green;
+}
+
+.status-menu .bad {
+    color: red;
+}
+
+.status-menu .neutral {
+    color: gray;
+}
+
+.word-plate {
+    position: absolute;
+    top: 70px;
+    left: 20%;
+    width: 60%;
+}
+
+.word {
+    padding: 5px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.word.good {
+    background-color: limegreen;
+}
+
+.word.bad {
+    background-color: red;
+}
+
+.edit-menu {
+    position: absolute;
+    left: 15px;
+    top: 70px;
+    height: 500px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+.edit-menu h5 {
+    margin-top: 5px;
+}
+
+.edit-menu .go-bottom {
+    position: absolute;
+    bottom: 5px;
+}
+
+.select-mode {
+    position: absolute;
+    left: 35%;
+    top: 70px;
+    height: 800px;
+    overflow-y: auto;
+    width: fit-content;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: left;
+}
+
+.bottom {
+    position: absolute;
+    left: 48%;
+    top: 880px;
+}
+
+.select-mode .word {
+    padding: 5px;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    text-align: center;
+}
